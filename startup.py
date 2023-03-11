@@ -4,17 +4,17 @@ import time
 class Startup:
 
     def __init__(self):
+        self.ampm = time.strftime("%p")
         self.name = "Rey"
         self.start()
 
     def start(self):
         print("Welcome back, " + self.name + "!")
         print("")
-        print("The time is: " + time.strftime("%H:%M:%S"))
+        print("Right now it is " + time.strftime("%A %B %d, %Y")+ " " + time.strftime("%H:%M:%S") + " " + self.ampm)
         print("")
         self.overlay()
     
-        
     def overlay(self):
         start = input("Would you like to start your overlay, y or n? ")
         while start != "y" and start != "n":
@@ -22,13 +22,15 @@ class Startup:
         if start == "n":
             exit()
         elif start == "y":
-            print("Overlay starting in: ")
+            print("Gotcha! ")
+            print("Starting overlay in: ")
             countdown = 3
             while countdown > 0:
                 print(countdown)
                 countdown = countdown - 1
                 time.sleep(1)
                 if countdown == 0:
+                    print("now!")
                     response = os.startfile(r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk")
                     print(response)
                     response = os.startfile(r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk")
