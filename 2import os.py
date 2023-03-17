@@ -1,49 +1,46 @@
 import os
 import time
-from tracemalloc import start
-from urllib import response
-from xmlrpc.client import ResponseError
 
-print("Welcome back Rey")
-print("")
 
-start = input("Would you like to start your overlay, y or n? ")
-if start == "n":
-  exit()
-  
+class Startup:
+    def __init__(self):
+        self.ampm = time.strftime("%p")
+        self.name = "Rey"
+        self.start()
 
-elif start == "y":
-        
-    start1 = input("Start intellij or vscode with Chrome? ")
-    if start1 == "vscode":
-            
-        print ("Overlay starting in:")
-        countdown = 5
-        while countdown > 0:
-            print (countdown)
-            countdown = countdown - 1
-            time.sleep(1)
-            if countdown == 0:
-                    
-                    response = os.startfile(r"C:\Users\Rey Halili\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\Visual Studio Code.lnk")
-                    print(response)
-               
-                    response = os.startfile(r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk")
-                    print(response)
-                    
+    def start(self):
+        print(f"Welcome back, {self.name}!")
+        print("")
+        print(f"Your system started at {time.strftime('%A %B %d, %Y')} {time.strftime('%H:%M:%S')} {self.ampm}")
+        print("")
+        self.overlay()
 
-    elif start1 == "intellij":
-                
-        print ("Overlay starting in:")
-        countdown = 5
-        while countdown > 0:
-            print (countdown)
-            countdown = countdown - 1
-            time.sleep(1)
-            if countdown == 0:
-                        
-                response = os.startfile(r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\JetBrains\IntelliJ IDEA 2022.2.1.lnk")
-                print(response)
-                        
-                response = os.startfile(r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk")
-                print(response)
+    def overlay(self):
+        start = input("Would you like to start your overlay, y or n? ")
+        while start not in ["y", "n"]:
+            start = input("Would you like to start your overlay, y or n? ")
+        if start == "n":
+            exit()
+        elif start == "y":
+            print("Gotcha!")
+            print("Starting overlay in:")
+            for i in range(3, 0, -1):
+                print(i)
+                time.sleep(1)
+            try:
+                with open("I:/CodeProjects/Python/Startup/app_list.txt", "r") as file:
+                    apps = file.readlines()
+            except FileNotFoundError:
+                print("File not found!")
+                exit()
+
+            for app in apps:
+                app = app.strip()
+                try:
+                    os.startfile(app)
+                except OSError:
+                    print(f"Failed to open {app}")
+
+if __name__ == "__main__":
+    Startup()
+
