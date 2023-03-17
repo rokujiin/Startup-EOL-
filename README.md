@@ -1,4 +1,1 @@
-# scaling-potato
-These are for staring up sequences for omputers
-startup.py is just for general use overlays while 2import os.py is for if you want to have choice between what type of overlay you want
-Within either programs you can edit the response = os.startfile(r"") and place the directory of whatever app's exe you wanted open on startup in between the ""
+Currently have 2 startup sequences, one for my main computer and one for my laptop which are startup and 2importos respectively. Provide .txt files with the absolute pathnames of the apps you want to open in the same file as the .py programs. 
